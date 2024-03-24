@@ -3,6 +3,9 @@ import { getServerSession } from 'next-auth';
 
 export default async function Private() {
   const session = await getServerSession(nextAuthOptions);
-  console.log(session?.user);
-  return <h1>Private Route</h1>;
+  return (
+    <div>
+      <h1>Hello, {session?.user.name}! This is a private route.</h1>
+    </div>
+  );
 }

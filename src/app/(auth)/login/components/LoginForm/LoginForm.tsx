@@ -1,7 +1,7 @@
 'use client';
 
 import { ILoginForm } from '@/ts/interfaces/ILoginForm';
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, message } from 'antd';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { MdLockOutline, MdOutlineEmail } from 'react-icons/md';
@@ -10,6 +10,7 @@ export function LoginForm(): JSX.Element {
   const router = useRouter();
 
   const onFinish = async (values: ILoginForm) => {
+    const loadingMessage = message.loading('Loading...', 0);
     const email = values.email;
     const password = values.password;
     const result = await signIn('credentials', {
@@ -19,10 +20,13 @@ export function LoginForm(): JSX.Element {
     });
 
     if (result?.error) {
-      console.log(result);
+      loadingMessage();
+      message.error('Invalid credentials!');
       return;
     }
-
+    
+    loadingMessage();
+    message.success('Logged in successfully!');
     router.replace('/private-route');
   };
 
