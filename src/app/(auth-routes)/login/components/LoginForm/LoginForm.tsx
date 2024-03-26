@@ -24,7 +24,7 @@ export function LoginForm(): JSX.Element {
       message.error('Invalid credentials!');
       return;
     }
-    
+
     loadingMessage();
     message.success('Logged in successfully!');
     router.replace('/private-route');
@@ -32,7 +32,7 @@ export function LoginForm(): JSX.Element {
 
   return (
     <Form
-      className='flex w-full flex-col items-center justify-center'
+      className='flex w-full flex-col items-center justify-safe-center overflow-y-auto'
       name='login_form'
       onFinish={onFinish}
       layout='vertical'
@@ -44,11 +44,15 @@ export function LoginForm(): JSX.Element {
         label='Email'
         rules={[
           {
-            required: true,
             type: 'email',
             message: 'The input is not valid E-mail!',
           },
+          {
+            required: true,
+            message: 'Please input your E-mail!',
+          },
         ]}
+        hasFeedback
       >
         <Input
           prefix={<MdOutlineEmail />}
@@ -62,12 +66,12 @@ export function LoginForm(): JSX.Element {
         name='password'
         label='Password'
         rules={[{ required: true, message: 'Please input your password!' }]}
+        hasFeedback
       >
-        <Input
+        <Input.Password
           prefix={<MdLockOutline />}
           placeholder='Enter your password'
           size='large'
-          type='password'
         />
       </Form.Item>
       <Form.Item className='mt-1 w-1/2'>

@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .justify-safe-center {
+    justify-content: safe center;
+  }
+}

@@ -1,4 +1,4 @@
-import { axiosClient } from '@/services/axiosClient';
+import { axiosClient } from '@/app/api/axiosClient';
 import NextAuth, { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 

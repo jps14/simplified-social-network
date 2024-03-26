@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import { poppins } from '@/styles/fonts/fonts';
-import '@/styles/globals.css';
 import { NextAuthSessionProvider } from './providers/sessionProvider';
+import { AntdRegistry } from '@ant-design/nextjs-registry';
+import '@/styles/globals.css';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -16,7 +17,9 @@ export default function RootLayout({
   return (
     <html lang='pt-br'>
       <body className={`${poppins.className}`}>
-        <NextAuthSessionProvider>{children}</NextAuthSessionProvider>
+        <NextAuthSessionProvider>
+          <AntdRegistry>{children}</AntdRegistry>
+        </NextAuthSessionProvider>
       </body>
     </html>
   );
